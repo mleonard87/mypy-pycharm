@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MYPY_BIN=/usr/local/bin/mypy
+
+length=$(($#-1))
+mypyargs=${@:1:$length}
+basepath=${@:$length+1:$length+1}
+
+$MYPY_BIN $mypyargs | awk -v basepath=$basepath '{print basepath"/" $0}'
